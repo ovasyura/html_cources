@@ -1,0 +1,25 @@
+{
+  "name": "assignment",
+  "version": "1.0.0",
+  "homepage": "https://github.com/ovasyura/html_cources",
+  "authors": [
+    "Oleh Vasyura <vasyura.oleh@gmail.com>"
+  ],
+  "description": "assignment",
+  "main": "index.html",
+  "keywords": [
+    "assignment"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0"
+  }
+}

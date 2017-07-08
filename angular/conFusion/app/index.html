@@ -40,17 +40,17 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#/">
+                    <li class="active"><a href="#!/">
                         <span class="glyphicon glyphicon-home"
                          aria-hidden="true"></span> Home</a></li>
-                    <li><a href="#/aboutus">
+                    <li><a href="#!/aboutus">
                         <span class="glyphicon glyphicon-info-sign"
                          aria-hidden="true"></span> About</a></li>
-                    <li><a href="#/menu">
+                    <li><a href="#!/menu">
                          <span class="glyphicon glyphicon-list-alt"
                          aria-hidden="true"></span> 
                          Menu</a></li>
-                     <li><a href="#/contactus">
+                     <li><a href="#!/contactus">
                      <i class="fa fa-envelope-o"></i> Contact</a></li>
                 </ul>
             </div>
@@ -79,6 +79,9 @@
             </div>
         </div>
     </header>
+    
+    <!-- <ng-include src="'menu.html'"></ng-include> -->
+    <ng-view></ng-view>
     
     <footer class="row-footer">
         <div class="container">
@@ -128,6 +131,7 @@
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers.js"></script>
     <script src="scripts/services.js"></script>
+    <script src="../bower_components/angular-route/angular-route.min.js"></script>
 <!-- endbuild -->
 
 </body>

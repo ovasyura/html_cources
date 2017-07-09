@@ -91,4 +91,16 @@ angular.module('confusionApp')
 
         }])
 
+
+        .controller('IndexController', ['$scope', 'menuFactory', 'corporateFactory', function($scope, menuFactory, corporateFactory) {
+
+            var promotion= menuFactory.getPromotion(0); //only one item is available
+            $scope.promotion = promotion;
+            $scope.featuredish = menuFactory.getDish(0);
+            $scope.specialist = corporateFactory.getLeader(3);
+    }])
+
+        .controller('AboutController', ['$scope', 'corporateFactory', function($scope, corporateFactory) {
+            $scope.leaders = corporateFactory.getLeaders();
+    }])
 ;

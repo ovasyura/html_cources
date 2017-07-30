@@ -4,6 +4,7 @@
 #include <iostream>
 #include <queue>
 #include <functional>
+#include <string>
 
 //Vertex typedef
 //iPair ==>  Integer Pair where first item is the number of the vertex and second is the weight
@@ -21,6 +22,9 @@ typedef std::pair<int, int> pVertex;
 class ShortestPath {
 	//constructor
 public:
+	ShortestPath():vCount(0)
+	{
+	}
 	ShortestPath(int vCount, int source, std::vector<int> distnces, std::vector<int> predecessor);
 
 public://operations
@@ -66,9 +70,12 @@ private:
 public:
 	Graph(int vCount);
 	Graph(int vCount, double density, std::vector<int>& edges);
+	Graph(const std::string& input_file);
+
 	~Graph()
 	{
-		delete[]adjacent;
+		if (adjacent != nullptr)
+			delete[]adjacent;
 	}
 
 	void addEdge(int u, int v, int w);

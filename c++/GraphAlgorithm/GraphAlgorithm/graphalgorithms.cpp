@@ -2,7 +2,10 @@
 //
 
 #include "stdafx.h"
+#include <iostream>
+#include <fstream>
 #include "graph.h"
+
 using namespace std;
 
 /*
@@ -97,7 +100,7 @@ ostream& operator<<(ostream & o, const ShortestPath & path)
  * Allocates memory for adjacency list
  * It doesn't create the graph itself
 */
-Graph::Graph(int vCount):vCount(vCount)
+Graph::Graph(int vCount):vCount(vCount),adjacent(nullptr)
 {
 	adjacent = new vector<vertex>[vCount];
 }
@@ -108,6 +111,36 @@ Graph::Graph(int vCount):vCount(vCount)
 Graph::Graph(int vCount, double density, vector<int>& edges):Graph(vCount)
 {
 	createRandomGraph(density, edges);
+}
+
+/*
+ * Construct graph from input file.
+ * It assume that file exit and doesn't check if file exist.
+ * Also constructor assumes that file is in correct format
+ * @param input_file contains the full path to the input file
+*/
+Graph::Graph(const string& input_file):vCount(0), adjacent(nullptr)
+{
+	ifstream file(input_file);
+	if (file.is_open())
+	{
+		//read the length of graph
+		file >> vCount;
+		adjacent = new vector<vertex>[vCount];
+		int data[3];
+		while (!file.eof())
+		{
+			for (int& d : data) {
+				file >> d;
+			}
+			//add edge
+			addEdge(data[0], data[1], data[2]);
+		}
+	}
+	else
+	{
+		cout << "File is not exist: " << input_file.c_str() << endl;
+	}
 }
 
 /*
@@ -162,6 +195,11 @@ void Graph::outputGraph()
 */
 ShortestPath Graph::shortestPath(int vSrc)
 {
+	if (vCount == 0)
+	{
+		cout << "Empty graph." << endl;
+		return ShortestPath();
+	}
 
 	int source = vSrc;
 	vector<int> distance(vCount, INF);
@@ -206,7 +244,12 @@ ShortestPath Graph::shortestPath(int vSrc)
 */
 void Graph::primMST()
 {
-	// Cretae a priority que for the vertex which are not yet in MST
+	if (vCount == 0)
+	{
+		cout << "Empty graph." << endl;
+		return;
+	}
+	// Create a priority que for the vertex which are not yet in MST
 	priority_queue< pVertex, vector<pVertex>, greater<pVertex> > vq;
 	//preinitialised vector for keys
 	vector<int> keys(vCount, INF);
@@ -248,10 +291,11 @@ void Graph::primMST()
 		}
 	}
 	//print the tree and minimum sum
+	cout << "result graph: <node> - <parent node>" << endl;
 	for (int i = 1; i < vCount; i++)
 	{
 		cout << i << " - " << parents[i] << endl;
 	}
-	cout << endl << "Minimum MST length: " << sum << endl;
+	cout << endl << "Minimum MST cost: " << sum << endl;
 }
 

@@ -1,0 +1,13 @@
+{
+  "name": "assignment1",
+  "version": "1.0.0",
+  "description": "node assignment1",
+  "main": "server.js",
+  "author": "Oleh Vasyura",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "morgan": "^1.9.0"
+  }
+}

@@ -12,10 +12,9 @@ var app = express();
 
 app.use(morgan('dev'));
 
-console.log(dish_Router.dishRouter());
-app.use('/dishes',dish_Router.dishRouter());
-app.use('/leadership',leader_Router.leaderRouter());
-app.use('/promotions',promotion_router.promoRouter());
+app.use('/dishes',dish_Router.dishRouter(express, bodyParser));
+app.use('/leadership',leader_Router.leaderRouter(express, bodyParser));
+app.use('/promotions',promotion_router.promoRouter(express, bodyParser));
 
 app.use(express.static(__dirname + '/public'));
 
